@@ -1,0 +1,25 @@
+/*
+ * Copyright (c) 2022 Nordic Semiconductor ASA
+ *
+ * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+ */
+
+ / {
+	chosen {
+		nordic,nus-uart = &uart0;
+	};
+};
+
+&pwm0 {
+	status = "disabled";
+};
+
+&sw_pwm {
+	status = "okay";
+	channel-gpios = <&gpio0 27 PWM_POLARITY_NORMAL>;
+};
+
+&pwm_led0 {
+	pwms = <&sw_pwm 0 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+};
+

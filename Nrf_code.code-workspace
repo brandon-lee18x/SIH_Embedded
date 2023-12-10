@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../Nrf_code"
+		},
+		{
+			"name": "nrf_bluetooth",
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"types.h": "c"
+		}
+	}
+}

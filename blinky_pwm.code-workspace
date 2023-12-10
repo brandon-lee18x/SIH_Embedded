@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "../../../ECE_189/blinky_pwm"
+		},
+		{
+			"name": "servo_motor",
+			"path": "../servo_motor"
+		},
+		{
+			"name": "nrf_bluetooth",
+			"path": "."
+		},
+		{
+			"name": "blinky_pwm",
+			"path": "../blinky_pwm"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"pwm.h": "c",
+			"kernel.h": "c"
+		},
+		"nrf-connect.applications": []
+	}
+}
