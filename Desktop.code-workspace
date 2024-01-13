@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../Desktop"
+		},
+		{
+			"name": "nrf_bluetooth",
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"ostream": "cpp"
+		}
+	}
+}

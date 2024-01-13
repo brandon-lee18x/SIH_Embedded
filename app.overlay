@@ -8,6 +8,16 @@
 	chosen {
 		nordic,nus-uart = &uart0;
 	};
+
+	// rtc0: rtc@4000b000 {
+	// 	compatible = "nordic,nrf-rtc";
+	// 	reg = <0x4000b000 0x1000>;
+	// 	cc-num = <3>;
+	// 	interrupts = <11 NRF_DEFAULT_IRQ_PRIORITY>;
+	// 	status = "disabled";
+	// 	clock-frequency = <32768>;
+	// 	prescaler = <1>;
+	// };
 };
 
 &pwm0 {
@@ -22,4 +32,3 @@
 &pwm_led0 {
 	pwms = <&sw_pwm 0 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
 };
-

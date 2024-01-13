@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../../../opt/nordic/ncs/v2.5.0/nrf/samples/bluetooth/peripheral_uart"
+		},
+		{
+			"name": "nrf_bluetooth",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"types.h": "c"
+		}
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../../opt/nordic/ncs/v2.5.0/zephyr/samples/drivers/counter/alarm"
+		},
+		{
+			"name": "nrf_bluetooth",
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"rtc.h": "c"
+		}
+	}
+}

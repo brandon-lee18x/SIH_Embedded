@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "Nrf_code",
+			"path": "../../Nrf_code"
+		}
+	],
+	"settings": {}
+}

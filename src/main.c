@@ -59,7 +59,6 @@ LOG_MODULE_REGISTER(LOG_MODULE_NAME);
 #define UART_WAIT_FOR_RX CONFIG_BT_NUS_UART_RX_WAIT_TIME
 
 static K_SEM_DEFINE(ble_init_ok, 0, 1);
-static uint32_t button_press_count = 0;
 static struct bt_conn *current_conn;
 static struct bt_conn *auth_conn;
 
@@ -529,7 +528,7 @@ static void bt_receive_cb(struct bt_conn *conn, const uint8_t *const data,
 			tx->data[tx->len] = '\n';
 			tx->len++;
 		}
-		//prints actual data here
+
 		err = uart_tx(uart, tx->data, tx->len, SYS_FOREVER_MS);
 		if (err) {
 			k_fifo_put(&fifo_uart_tx_data, tx);
@@ -597,36 +596,6 @@ static void configure_gpio(void)
 	if (err) {
 		LOG_ERR("Cannot init LEDs (err: %d)", err);
 	}
-	dk_set_led_off(DK_LED3);
-}
-
-static void send_button_count_over_ble(uint32_t count)
-{
-    char count_str[10];
-    snprintf(count_str, sizeof(count_str), "%lu", count);
-    
-    if (current_conn) {
-        bt_nus_send(current_conn, count_str, strlen(count_str));
-    }
-}
-
-static void button_handler(uint32_t button_state, uint32_t has_changed)
-{
-    if (has_changed & DK_BTN1_MSK) {
-        if (button_state & DK_BTN1_MSK) {
-            button_press_count++;
-            // Function to send count over Bluetooth
-            send_button_count_over_ble(button_press_count);
-        }
-    }
-}
-
-static void configure_buttons(void)
-{
-    int err = dk_buttons_init(button_handler);
-    if (err) {
-        LOG_ERR("Cannot init buttons (err: %d)", err);
-    }
 }
 
 int main(void)
@@ -681,9 +650,8 @@ int main(void)
 		return 0;
 	}
 
-	configure_buttons();
-
-	printk("SERVO test\n");
+	printk("Smart Lock begin\n");
+	pwm_set_dt(&pwm_led0, PWM_MSEC(20), PWM_MSEC(2)); //start in lock state
 
 	if (!pwm_is_ready_dt(&pwm_led0)) {
 		printk("Error: PWM device %s is not ready\n",
@@ -692,9 +660,7 @@ int main(void)
 
 	while (1) {
 		dk_set_led(RUN_STATUS_LED, (++blink_status) % 2);
-		k_sleep(K_SECONDS(1));
-		dk_set_led(RUN_STATUS_LED, (++blink_status) % 2);
-		k_sleep(K_SECONDS(1));
+		k_sleep(K_MSEC(RUN_LED_BLINK_INTERVAL));
 	}
 	return 0;
 }

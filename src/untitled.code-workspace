@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../../../opt/nordic/ncs/v2.5.0/nrf/applications/untitled"
+		},
+		{
+			"name": "nrf_bluetooth",
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
